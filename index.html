@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+    <head>
+      <!--Import Google Font-->
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Import styles-->
+      <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <header>
+        <nav class="deep-purple">
+          <div class="nav-wrapper row">
+            <a href="#" class="brand-logo col offset-s1">Logo</a>
+          </div>
+        </nav>      
+      </header>
+      <div class="row">
+        <div class="col s2 z-depth-5">
+          <div class="row">
+            <div class="col s12 ">
+              <ul class="row">
+                <li class="line" onclick="add1()"><a class="waves-effect waves-light btn" id="addClick">addition</a></li>
+                <li class="line" onclick="sub1()"><a class="waves-effect waves-light btn" id="subClick">subtraction</a></li>
+                <li class="line" onclick="mul2()"><a class="waves-effect waves-light btn" id="mulClick">multiplication</a></li>
+                <li class="line" onclick="inverse()"><a class="waves-effect waves-light btn" id="inverseClick">inverse</a></li>
+                <li class="line" onclick="leverey()"><a class="waves-effect waves-light btn" id="levereyClick">leverey</a></li>
+                <li class="line" onclick="fadev()"><a class="waves-effect waves-light btn" id="fadevClick">fadev</a></li>
+                <li class="line" onclick="qr()"><a class="waves-effect waves-light btn" id="qrClick">qr</a></li>
+                <li class="line" onclick="lr()"><a class="waves-effect waves-light btn" id="lrClick">lr</a></li>
+                <li class="line" onclick="yakob()"><a class="waves-effect waves-light btn" id="yakobClick">yakob</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col s10">
+          <div id="add">
+            <div class="row">
+              <div class="col s12">
+                <div  id="part3" class="container">
+                  <h4 class="header">addition</h4>
+                  <p class="size">Matrix dimension</p>
+                </div>
+              </div>
+              <div class="col s6">
+                <div  id="part1" class="container"></div>
+              </div>
+              <div class="col s6">
+                <div  id="part2" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div  id="part11" class="col s4 container"></div>
+                <div  id="part12" class="col s4 container"></div>
+                <div  id="part13" class="col s4 container"></div>
+              </div>
+              <div class="col s12">
+                <div id="part5" class="col s10 offset-s1"></div>
+              </div>
+            </div> 
+          </div>
+          <div id="sub">                      
+            <div class="row">
+              <div class="col s12">
+                <div  id="spart3" class="container">
+                  <h4 class="header">subtraction</h4>
+                  <p class="size">Matrix dimension</p>
+                </div>
+              </div>
+              <div class="col s6">
+                <div  id="spart1" class="container"></div>
+              </div>
+              <div class="col s6">
+                <div  id="spart2" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div  id="spart11" class="col s4 container"></div>
+                <div  id="spart12" class="col s4 container"></div>
+                <div  id="spart13" class="col s4 container"></div>
+              </div>
+              <div class="col s12">
+                <div id="spart5" class="col s10 offset-s1"></div>
+              </div>
+            </div>        
+          </div>  
+          <div id="mul">
+            <div class="row">
+              <div class="col s12">
+                <div  id="mpart3" class="container">
+                  <h4 class="header">multiplication</h4>
+                  <p class="size">Matrix dimension</p>
+                </div>
+              </div>
+              <div class="col s6">
+                <div  id="mpart1" class="container"></div>
+              </div>
+              <div class="col s6">
+                <div  id="mpart2" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div  id="mpart11" class="col s4 container"></div>
+                <div  id="mpart12" class="col s4 container"></div>
+                <div  id="mpart13" class="col s4 container"></div>
+              </div>
+              <div class="col s12">
+                <div id="mpart5" class="col s10 offset-s1"></div>
+              </div>
+            </div>                
+          </div>  
+          <div id="inverse">
+            <div class="row">
+              <div class="col s12">
+                <div  id="ipart3" class="container">
+                  <h4 class="header">inverse</h4>
+                  <p class="size">Matrix dimension</p>
+                  <span id="dimension"></span>
+                </div>
+              </div>
+              <div class="col s12">
+                <div  id="ipart1" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div  id="ipart11" class="col s4 container"></div>
+              </div>
+            </div>               
+          </div>
+          <div id="leverey">
+            <h4 class="header">leverey</h4>
+            <p class="size">Matrix dimension:</p>         
+          </div>
+          <div id="fadev" class="container">
+            <h4 class="header">fadev</h4>
+            <p class="size">Matrix dimension:</p>         
+          </div>
+          <div id="qr" class="container row">
+            <h4 class="header">QR Algorithm</h4>
+            <p class="size">Matrix dimension:</p>     
+          </div>
+          <div id="lr" class="container">
+            <h4 class="header">lr</h4>
+            <p class="size">Matrix dimension:</p>         
+          </div>
+          <div id="yakob" class="container">
+            <h4 class="header">yakob</h4>
+            <p class="size">Matrix dimension:</p>         
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>  
+  <footer class="page-footer deep-purple">
+    <div class="footer-copyright">
+      <div class="container">
+        © 2018 Anna Melkonyan
+      </div>
+    </div>
+  </footer>
+      
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <!--Import my jQuery-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <!--Import my js-->
+  <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>

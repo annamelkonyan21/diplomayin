@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<body>
+    <script>
+    
+        let linebreak ="<br />";
+ 
+        function newMatrix(matrixSize){
+            let k;
+            let matrixIs = new Array(matrixSize);
+            for( k = 0; k < matrixSize; k++){
+                matrixIs[k] = new Array(matrixSize);
+            }
+            return matrixIs;
+        }
+
+        function newMatrixUnequal(matrixSize1,matrixSize2){
+            let k;
+            let matrixIs = new Array(matrixSize1);
+            for( k = 0; k < matrixSize1; k++){
+                matrixIs[k] = new Array(matrixSize2);
+            }
+            return matrixIs;
+        }
+
+        function promptMatrix(matrixSize){
+            let matrix = newMatrix(matrixSize);
+            let matrix2 = newMatrix(matrixSize);
+            for(let i =0; i < matrixSize; i++){
+                for(let j = 0; j < matrixSize; j++){
+                    matrix[i][j] =  prompt('Matrix['+(i+1)+']['+(j+1)+'] =',);
+                    matrix2[i][j] = parseFloat(matrix[i][j]);
+                    document.write('Matrix2['+(i+1)+']['+(j+1)+'] = '+matrix2[i][j] + ' ');
+                }
+                document.write(linebreak);
+            }   
+            document.write(linebreak);
+           return matrix2; 
+        }
+
+        function miavor(matrixSize){
+            let matrix = newMatrix(matrixSize);
+            for(let i = 0; i < matrixSize; i++){
+                for(let j = 0; j < matrixSize; j++){
+                    if(i === j){
+                        matrix[i][j] = 1;
+                    } else {
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+            return matrix;
+        }
+
+
+        function hetq(matrix){
+            let hetq = 0;
+            for(let i = 0; i<matrix.length; i++){
+                for(let j = 0; j<matrix.length; j++){
+                    if(i===j){
+                        hetq += matrix[i][j];
+                    }
+                }
+            }
+            return hetq;
+        }
+
+    
+        function mul(matrix,matrix2){
+            let len = matrix.length;
+            let mat = newMatrix(len);
+            for(let i = 0; i<len; i++){
+                for(let j=0; j<len; j++){
+                    mat[i][j] = 0;
+                    for(let k=0; k<len; k++){
+                        mat[i][j] = mat[i][j]+ matrix[i][k]*matrix2[k][j];
+                    }
+                }
+            }
+            return mat;
+        }
+
+
+        function sub(matrix,matrix2){
+            let len = matrix.length;
+            let mat = newMatrix(len);
+            for(let i = 0; i<len; i++){
+                for(let j=0; j<len; j++){
+                     mat[i][j] = matrix[i][j]-matrix2[i][j];       
+                }
+            }
+            return mat;
+        }
+
+        function print(matrix,string){
+            document.write(string + linebreak);
+            for(let i =0; i<matrix.length; i++){
+                for(let j =0; j<matrix.length; j++){
+                    document.write('Matrix['+(i+1)+']['+(j+1)+'] = '+matrix[i][j] + ' ');
+                }
+                document.write(linebreak);
+            }
+            document.write(linebreak);
+        }
+
+        function arrayPrint(array,name){
+            for(let i =0; i < array.length; i++ ){
+                document.write(name + "["+(i+1)+"] = " + array[i] + linebreak);
+            }
+        }
+        
+        function leveryev(){
+            let matrixSize =  prompt("matrix size",);
+                matrixSize = parseInt(matrixSize);
+            let A =  promptMatrix(matrixSize);
+            let s =[], p=[], pi = 0;
+            s[0] = hetq(A);
+            p[0] = s[0];
+            let B = mul(A,A);
+            print(B,"A*A");
+            let qq = hetq(B);
+            s.push(qq);
+            console.log("s = " + s[0]+ " p = " + p[0]);
+            for(let k = 2; k < matrixSize; k++){
+                let C = mul(A,B);
+                console.log("C");
+                console.log(C);
+                B = C;
+                let q = hetq(B);
+                s.push(q);
+            }
+            for(let i = 1; i<matrixSize;i++){
+                let sum = 0;
+                var k =0;
+                for(let j = i; j>0;j--){
+                    if(k<i){
+                        sum +=s[j-1]*p[k];
+                        console.log("s["+ (j-1)+"]=" + s[j-1] + "  p["+k+"]=" + p[k]);
+                        console.log("sum = "+ sum);
+                        k++;
+                    }
+                } 
+                p[i] = (s[i]-sum)/(i+1);
+            }
+            arrayPrint(p,"p");
+        }
+
+        //leveryev();
+        
+        function fadeev(A,matrixSize){
+            //let matrixSize =  prompt("matrix size",);
+              //  matrixSize = parseInt(matrixSize);
+           //     document.write("A"+ linebreak);
+            //let A =  promptMatrix(matrixSize), 
+            let p = [];
+            let p1 = hetq(A);
+                p.push(p1);
+            let A1 = A, B1 = newMatrix(matrixSize);    
+            for(let k = 1; k < matrixSize; k++ ){
+                let E = newMatrix(matrixSize);
+                for(let i =0; i < matrixSize; i++){
+                    for(let j = 0; j<matrixSize; j++){
+                        if (i ===j ){
+                            E[i][j] = p[k-1];
+                        }else {
+                            E[i][j] = 0;
+                        }
+                    }
+                }
+                let B = newMatrix(matrixSize);
+                B = sub(A1,E);
+              //  print(B,"B"+k);
+                let C = mul(A,B);
+             //   print(C,"A"+(k+1) +"= A*B");
+                let p2 = hetq(C)/(k+1);
+                p.push(p2);
+                A1 = C;
+                if(k ===  (matrixSize-1)){
+                    B1 = B;
+                }
+            }
+
+            let reverseA = newMatrix(matrixSize);
+            for(let i=0; i<matrixSize; i++){
+                    for(let j=0; j<matrixSize; j++){
+                        reverseA[i][j] = B1[i][j]/p[p.length-1];
+                    }
+            }
+          //  print(reverseA,"Reverse A");
+          //  arrayPrint(p,"p");
+            return reverseA;
+        }
+
+        //fadeev();
+
+        //QR
+
+        function lambda(a,matrixSize){
+            let lambda = [];
+            for(let i = 0; i < matrixSize; i++){
+                    lambda.push(a[i][i].toFixed(3));
+            }
+            return lambda;
+        }
+      
+        function AM(a, matrixSize){
+            
+            let s = [], v = [] , myu = [];
+            
+            for(let i = 0; i < matrixSize-1; i++) {
+                let sum = 0;
+                for(let j = i; j < matrixSize; j++) {
+                    sum += Math.pow(a[j][i], 2);   
+                }
+                sum = Math.pow(sum,1/2); 
+                if ( a[i][i] > 0 ){
+                    sum *= (-1);
+                } else if ( a[i][i] < 0 ) {
+                    sum *= 1;
+                } else {
+                    sum = 0;
+                }
+                s.push(sum);
+                let vSum = 0;
+                vSum = Math.pow(s[i], 2) - s[i]*a[i][i];
+                v.push(1/vSum);
+                myu.push(Math.sqrt(v[i]));
+            }
+            
+            let ua = [];
+            
+            for(let i = 0; i < matrixSize-1; i++) {
+                var ui = [];
+                for(let j = 0; j < matrixSize; j++) {
+                    if(i == j ){
+                        ui[i] = a[i][i] - s[i];
+                        ua.push(ui[i]);
+                    }
+                    else if (i < j) {
+                        ui[i] = a[j][i];
+                        ua.push(ui[i]);
+                    } else {
+                        ui[i] = 0;
+                        ua.push(ui[i]);    
+                    }
+                }   
+            }        
+            
+            let u = [];
+            
+            while(ua.length) {
+                u.push(ua.splice(0,matrixSize));
+            }    
+            
+            let W = newMatrixUnequal(matrixSize-1,matrixSize);
+            
+            for(let i = 0; i < matrixSize-1; i++) {
+                for(let j = 0; j < matrixSize; j++) {
+                    W[i][j] = myu[i]*u[i][j];
+                }
+            }
+            
+            let wTrans = newMatrixUnequal(matrixSize,matrixSize-1);  
+            
+            for(let i = 0; i < matrixSize; i++) {
+                for(let j = 0; j < matrixSize-1; j++) {
+                    wTrans[i][j] = W[j][i];
+                }
+            }
+            
+            var pn = [];
+            
+            for(let i = 0; i < matrixSize-1; i++) {
+                var pi = newMatrix(matrixSize, matrixSize);
+                for(var j = 0; j < matrixSize; j++) {
+                    for(var k = 0; k < matrixSize; k++) {
+                        pi[j][k] = W[i][j] * wTrans[k][i];
+                    }
+                }
+                pn.push(pi);
+            }        
+            
+            var p = pn;    
+            
+            for(let i = 0; i < matrixSize-1; i++) {           
+                for(let j = 0; j < matrixSize; j++) {
+                    for(let k = 0; k < matrixSize; k++) {
+                        if(j === k) {
+                            p[i][j][k] = 1 - pn[i][j][k];
+                        }
+                        else {
+                            p[i][j][k] = 0 - pn[i][j][k];
+                        }
+                    }
+                }
+            }
+            
+            let p0 = p[matrixSize-2];
+            let R = newMatrix(matrixSize,matrixSize);
+            
+            for(let i =  matrixSize-3; i >= 0; i--) {
+                p0 = mul(p0,p[i]);
+            }
+            R = mul(p0,a);
+            let Q =fadeev(p0,matrixSize);
+            let Am = mul(R,Q);
+            
+            return Am;
+        }
+
+        function condition(a,matrixSize){
+            let tt = [] , t = true;          
+            for(let i = 1; i < matrixSize; i++) {
+                for(let j = 0; j < i; j++) {
+                    if( Math.abs(a[i][j]) < 0.001) {
+                        tt.push(true);
+                    } else {
+                        tt.push(false);
+                    }
+                }
+            }
+            return tt;
+        }
+
+
+         function am(A,matrixSize){
+            let L = newMatrix(matrixSize);
+            let R = newMatrix(matrixSize);
+            for(let i = 0; i < matrixSize; i++){
+                for(let j = 0; j < matrixSize; j++){
+                    R[i][j] = 0;
+                    L[i][j] = 0;
+                }
+            }
+            for(let i = 0; i< matrixSize; i++) {
+                R[0][i] = A[0][i];
+                L[i][0] = A[i][0]/R[0][0];
+            }
+            for(let i = 1; i <matrixSize; i++) {
+        
+                if (i > 1){
+                    for(let k = i-1; k < matrixSize; k++){
+                        let sum2 = 0;
+                        for(let j = 0; j < k-1; j++){
+                            sum2 += L[i][j]*R[j][k];
+                        }
+                        L[i][k] = (A[i][k]-sum2)/R[k][k];    
+                    }
+                }
+                for(let k = i; k <matrixSize; k++ ){
+                    let sum1 = 0;
+                    for(let j = 0; j < i; j++){
+                        sum1 += L[i][j]*R[j][k];
+                    } 
+                    R[i][k] = A[i][k] - sum1;
+                }
+            }
+            for(let i = 0; i < matrixSize; i++){
+                for(let j = 0; j < matrixSize; j++){
+                    if (i == j) {
+                        L[i][j] = 1
+                    }
+                }
+            }
+            
+            let Aml =  mul(R,L);
+            
+            return Aml;
+       }
+
+      function QR(){
+            let matrixSize =  prompt("matrix size",);
+            matrixSize = parseInt(matrixSize);
+            document.write("A"+ linebreak);
+            let A =  promptMatrix(matrixSize);
+            let Am1 = AM(A,matrixSize);
+            //let Am2, bool2;
+            let bool = condition(Am1,matrixSize);
+            
+            let iteraci = 1;
+            let t = true;
+            while(t){
+                for(let i  = 0; i < bool.length; i++){
+                    if(bool[i] == false){
+                        iteraci++;        
+                        Am1 = AM(Am1,matrixSize);
+                        bool = condition(Am1,matrixSize);
+                        t = true;     
+                        break; 
+                    } else {
+                        t=false;
+                    }
+                }  
+            }
+          
+            print(Am1,'Am['+iteraci+"]");
+            let l = lambda(Am1,matrixSize);
+            document.write("Մատրիցի սեփական թվերը"+linebreak);
+            arrayPrint(l, 'lambda');
+            document.write("Իտերացիաների քանակը՝  K = " +iteraci);  
+        }
+
+    
+
+        function condition1(a,matrixSize, epsilon){
+            let tt = [] , t = true;
+            for(let i = 1; i < matrixSize; i++){
+                for(let j = 0; j < i; j++){
+                    if (Math.abs(a[i][j])<epsilon){
+                        tt.push(true);
+                    } else {
+                        tt.push(false);
+                    }
+
+                }
+            }
+            
+            return tt;
+        }
+
+        function LR(){
+            let matrixSize =  prompt("matrix size",);
+            matrixSize = parseInt(matrixSize);
+            document.write("A"+ linebreak);
+            let A =  promptMatrix(matrixSize);
+            let Am1 = am(A,matrixSize);
+            //let Am2, bool2;
+            let bool = condition1(Am1,matrixSize,0.001);
+            
+            let iteraci = 1;
+            let t = true;
+            while(iteraci<7){
+                for(let i  = 0; i < bool.length; i++){
+                    if(bool[i] == false){       
+                        Am1 = am(Am1,matrixSize);
+                        iteraci++;
+                        print(Am1,'Am[' + iteraci+"]");
+                        bool = condition1(Am1,matrixSize,0.001);
+                        t = true;   
+                        console.log(iteraci)  
+                        break; 
+                    } else {
+                        t=false;
+                    }
+                }  
+            }
+            //print(Am1,'Am[' + iteraci+"]");
+            document.write("Մատրիցի սեփական թվերը"+linebreak);
+            let l = lambda(Am1,matrixSize);
+            arrayPrint(l, 'lambda');
+            document.write("Իտերացիաների քանակը՝  K = " +iteraci); 
+            //document.write(iteraci);  
+        }
+
+
+  //   QR();   
+   //  LR();
+
+    function yakobAm(A,matrixSize){
+        let max = Math.abs(A[1][0]);
+        let i0 = 1, j0 = 0;
+        for(let i = 2 ; i < matrixSize; i++){
+            for(let j = 0 ; j < i; j++){
+                if(Math.abs(A[i][j])>max){
+                    max = Math.abs(A[i][j]);
+                    i0 = i;
+                    j0 = j;
+                }
+            }
+        }
+        document.write(max + " " + i0 + " "+ j0) ;
+        let fi = 0.5*Math.atan((2*max)/(A[i0][i0]-A[j0][j0]));
+        console.log(fi);
+
+        let c = Math.cos(0.5*Math.atan((2*A[i0][j0])/(A[i0][i0]-A[j0][j0])));
+        let s = Math.sin(0.5*Math.atan((2*A[i0][j0])/(A[i0][i0]-A[j0][j0])));
+        
+        document.write(linebreak+s+linebreak);
+        let Am = newMatrix(matrixSize);
+        
+        for(let i = 0; i < matrixSize; i++){
+            Am[i0][i] = A[i][i0]*c + A[i][j0]*s;
+            Am[j0][i] = -A[i][i0]*s + A[i][j0]*c;
+            Am[i][i0] = Am[i0][i];
+        Am[i][j0] = Am[j0][i];
+        }
+        for(let i = 0; i < matrixSize; i++){
+            for(let j = 0; j < matrixSize; j++){
+                if(i == j){
+                    Am[i][j] = A[i][j];
+                }    
+            }
+        }
+        Am[i0][i0] = A[i0][i0]*Math.pow(c, 2)+2*A[i0][j0]*s*c+A[j0][j0]*Math.pow(s,2);
+        
+        Am[j0][j0] = A[i0][i0]*Math.pow(s,2)-2*A[i0][j0]*s*c+A[j0][j0]*Math.pow(c,2);
+        Am[i0][j0] = 0;
+        Am[j0][i0] = 0;
+        console.log("Am[3][3] = "+ Am[i0][i0]);
+        print(Am, "Am");
+        return Am;
+       
+    }
+
+   function yakob(){
+    let matrixSize =  prompt("matrix size",);
+    matrixSize = parseInt(matrixSize);
+    document.write("A"+ linebreak);
+    let A = promptMatrix(matrixSize);
+    let t = true;
+    while(t) {
+        let AM = yakobAm(A, matrixSize);
+        for(let i = 0 ; i < matrixSize; i++) {
+            for(let j = 0 ; j < matrixSize; j++){
+                if(i < j || i > j) {
+                    AM[i][j] < 0;
+                    t = false;    
+                } else {
+                    t = true;
+                }
+                
+            }
+        }
+        
+    }
+    
+
+
+   }
+
+
+
+   yakob();
+    </script>
+</body>
+</html>

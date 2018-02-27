@@ -1,0 +1,136 @@
+* { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;  
+    font-family: 'Nanum Myeongjo', serif;
+ 
+}
+
+body{
+    background-color: #ede7f6;
+}
+input[type = number]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #673ab7;
+    box-shadow: 0 1px 0 0 #673ab7;
+    
+}
+input[type = number]:not(.browser-default):focus:not([readonly]) +label{
+    color: #673ab7;
+}
+
+.row .col {
+    padding: 2px !important;
+    
+}
+
+#add, #sub, #mul, #inverse, #leverey, #fadev, #qr, #lr, #yakob {
+    display: none;
+}
+
+.header{
+    text-align: center;
+    text-transform: uppercase;    
+    font-family: 'Raleway', sans-serif;
+    text-shadow: 4px 4px 4px #aaa;
+}
+
+.btn{
+    border: 1px solid white !important;
+    border-radius: 0;
+    background-color: #673ab7 !important;
+}
+
+.line a{
+    width: 100%;    
+}
+
+.size {
+    text-shadow: -1px 0px 1px #aaa;
+    margin-top: 10px;
+    text-align: center;
+
+}
+select{
+    display: block;
+  /*  width: 50% !important;*/
+    text-align: center;
+    height: 35px !important;
+}  
+
+select:focus{
+    border: 2px  solid #673ab7;
+    outline-width: 0;
+}
+
+.lammbda {
+    height: 18px;
+    float: left;
+}
+
+/* #add{
+    display: block;
+} */
+
+/*
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+.logo{
+    padding: 10px 10%;
+}
+.nav{
+    width: 20%;
+    margin-top: 10px;
+    margin-left: 2%;
+    background: grey; 
+    float: left;
+}
+.line{
+    border: 1px solid black;  
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5%;
+}
+.line p{
+    text-transform: uppercase;
+    color: white;
+    
+}
+
+.container {
+    width: 76%;
+    margin-bottom: 10%;
+    float: left;
+    background: grey;
+    height: 100px;
+    margin-top: 10px;
+}
+.header{
+    text-align: center;
+    color: aliceblue;
+    margin-top: 20px;
+}
+.size {
+    color: aliceblue;
+    margin-left: 5%;
+    margin-top: 20px;
+    float: left;
+}
+.select {
+    margin: 20px;
+    background: greenyellow;
+}
+.btn{
+    padding: 1px 20px;
+    background: greenyellow;
+    border: none;
+    border-radius: 5px;
+}*/
