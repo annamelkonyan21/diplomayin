@@ -275,6 +275,7 @@ function sub(matrix,matrix2){
     return mat;
 }
 
+//----------leverev --------------
 function leveryev(A,matrixSize){
     let s =[], p=[], pi = 0;
     s[0] = hetq(A);
@@ -302,6 +303,32 @@ function leveryev(A,matrixSize){
     return p;
 }
 
+//-----fadev calculate-------------
+function fadevCalculate(A,matrixSize){
+    let p = [];
+    let p1 = hetq(A);
+    p.push(p1);
+    let A1 = A, B1 = newMatrix(matrixSize);    
+    for(let k = 1; k < matrixSize; k++ ){
+        let E = newMatrix(matrixSize);
+        for(let i =0; i < matrixSize; i++){
+            for(let j = 0; j<matrixSize; j++){
+                if (i ===j ){
+                    E[i][j] = p[k-1];
+                }else {
+                    E[i][j] = 0;
+                }
+            }
+        }
+        let B = newMatrix(matrixSize);
+        B = sub(A1,E);
+        let C = mul(A,B);     
+        let p2 = hetq(C)/(k+1);
+        p.push(p2);
+        A1 = C;   
+    }
+    return p;
+}
 
 function displayAndBtn(activeDisplay, array1, array2, array3, array4, array5, array6,array7,array8, activeBtn, array11, array22, array33, array44, array55, array66, array77, array88) {
     document.getElementById(activeDisplay).style.display = "block";
@@ -1072,22 +1099,26 @@ function leverey(){
             donem.setAttribute('type','button');
             donem.classList = 'btn';
             function calculate(){
-                let B = newMatrix(size);
                 let tabel2 = document.createElement('tabel');
                 let tr2 = [];
-                let td2 = newMatrix(size);
+                let td2 = newMatrix2(size,2)
                 for(let i=0; i < size; i++){
                     for(let j = 0; j < size; j++){
                         A[i][j] = input1[i][j].value;
                         A[i][j] = parseFloat(A[i][j]);
                     }
                 }
-                B = leveryev(A,size);
-                  for(let i = 0; i < size; i++ ){
+                let p = leveryev(A,size);
+                for(let i = 0; i < size; i++ ){
                     tr2[i] = document.createElement('tr');
-                    for(let j =0; j < size; j++){    
+                    for(let j =0; j < 2; j++){    
                         td2[i][j] = document.createElement('td');
-                        td2[i][j].innerHTML = "B["+(i+1)+"]["+(j+1)+"]="+B[i][j];
+                        if (j === 0) {
+                            td2[i][j].innerHTML = "P["+(i+1)+"] = ";
+                        }
+                        else {
+                            td2[i][j].innerHTML = p[i];
+                        }
                         tr2[i].appendChild(td2[i][j]);
                     }
                     tabel2.appendChild(tr2[i]);
@@ -1126,7 +1157,133 @@ function leverey(){
 let fadevCount = true;
 function fadev(){
     displayAndBtn("fadev", "sub", "add", "mul", "inverse", "leverey", "qr", "lr", "yakob","fadevClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "qrClick", "lrClick", "yakobClick");
-    
+    if (fadevCount) { 
+        let divs = document.createElement('div');
+        divs.classList = "col s3 offset-s4";
+        let div1 = document.createElement('div');
+        div1.classList = "input-fluid col s4";
+        let select1 = document.createElement('select');
+        select1.id ="select_id1";
+        select1.style.marginLeft = '100px';
+        let option1 = [];
+        for(let i = 2; i <= 100; i++){
+            option1[i] = document.createElement('option');
+            option1[i].setAttribute("value", i);
+            option1[i].innerHTML = i;
+        }        
+        for(let i = 2; i <= 100; i++){
+            select1.appendChild(option1[i]);
+        }
+        div1.appendChild(select1);
+        divs.appendChild(div1);
+        document.getElementById("fdimension").appendChild(divs);  
+        let creatMatrix = document.createElement('input');
+        creatMatrix.setAttribute("value","Set Matrix");
+        creatMatrix.setAttribute("type", "submit");
+        creatMatrix.classList = "btn waves-effect waves-light";
+        creatMatrix.addEventListener('click',getValue);
+        creatMatrix.style.marginRight = '100px';
+        let size = [];
+        let table1 = document.createElement("table");
+        let header1 = document.createElement('h4');
+        let tr1 = [];
+        function getValue(){
+            header1.innerHTML = "A matrix";
+            header1.classList = 'center-align';
+            size = select1.value;
+            size = parseInt(size);
+            let A = newMatrix(size);
+            let td1 = newMatrix(size);
+            let input1 = newMatrix(size);
+            let label1 = newMatrix(size);
+            let div2 = newMatrix(size);
+            for(let i = 0; i < size; i++){
+                tr1[i] = document.createElement('tr');
+                for(let j = 0; j < size; j++){
+                    td1[i][j] = document.createElement('td');
+                    div2[i][j] = document.createElement('div');
+                    label1[i][j] = document.createElement('label');
+                    let inputValue1 = "A["+(i+1)+"]["+(j+1)+"]";
+                    div2[i][j].classList = "input-field";
+                    input1[i][j] = document.createElement('input');
+                    label1[i][j].id = inputValue1;
+                    label1[i][j].innerHTML =  inputValue1;
+                    input1[i][j].setAttribute('type', 'number');
+                    input1[i][j].setAttribute("id", inputValue1); 
+                    input1[i][j].setAttribute("name", inputValue1);  
+                    A[i][j] = input1[i][j].value;
+                    div2[i][j].appendChild(label1[i][j]);
+                    div2[i][j].appendChild(input1[i][j]);
+                    td1[i][j].appendChild(div2[i][j]);
+                    tr1[i].appendChild(td1[i][j]);
+                }
+                table1.appendChild(tr1[i]);
+            }
+            document.getElementById('fpart1').appendChild(header1);  
+            document.getElementById('fpart1').appendChild(table1);
+            let done = document.createElement('input');
+            done.setAttribute('value', 'calculate');
+            done.setAttribute('type','button');
+            done.classList = 'btn';
+            done.addEventListener('click', calculate);
+            let donem = document.createElement('input');
+            donem.setAttribute('value', 'clear');
+            donem.setAttribute('type','button');
+            donem.classList = 'btn';
+            function calculate(){
+                let tabel2 = document.createElement('tabel');
+                let tr2 = [];
+                let td2 = newMatrix2(size,2)
+                for(let i=0; i < size; i++){
+                    for(let j = 0; j < size; j++){
+                        A[i][j] = input1[i][j].value;
+                        A[i][j] = parseFloat(A[i][j]);
+                    }
+                }
+                let p = fadevCalculate(A,size);
+                for(let i = 0; i < size; i++ ){
+                    tr2[i] = document.createElement('tr');
+                    for(let j =0; j < 2; j++){    
+                        td2[i][j] = document.createElement('td');
+                        if (j === 0) {
+                            td2[i][j].innerHTML = "P["+(i+1)+"] = ";
+                        }
+                        else {
+                            td2[i][j].innerHTML = p[i];
+                        }
+                        tr2[i].appendChild(td2[i][j]);
+                    }
+                    tabel2.appendChild(tr2[i]);
+                }
+                let header2 = document.createElement('h4');
+                header2.innerHTML = 'P -?';
+                header2.classList = 'center-align';
+                document.getElementById('fpart2').appendChild(header2);
+                document.getElementById('fpart11').appendChild(tabel2);
+               
+                donem.addEventListener('click', clear);
+                function clear(){
+                    for(let i = 0; i < size; i++){
+                        table1.removeChild(tr1[i]);
+                        tabel2.removeChild(tr2[i]);
+                    }  
+                    document.getElementById("fpart1").removeChild(done);
+                    document.getElementById("fpart1").removeChild(header1);
+                    document.getElementById("fpart2").removeChild(header2);
+                    document.getElementById("fpart1").removeChild(table1);        
+                    document.getElementById("fpart11").removeChild(tabel2);        
+                    document.getElementById("fpart1").removeChild(donem);
+                }
+              
+            }   
+            document.getElementById('fpart1').appendChild(done);
+            document.getElementById("fpart1").appendChild(donem);
+                        
+        }
+
+        document.getElementById('fdimension').appendChild(creatMatrix);
+        fadevCount = false;
+    } 
 }
 
 
@@ -1206,7 +1363,6 @@ function qr() {
                     for(let i = 0; i < size; i++){
                         for(let j = 0; j < size; j++){
                         A[i][j] =  parseFloat(input1[i][j].value);
-                        console.log(A[i][j]);
                         }
                     }
                     A1 = AM(A,size);
@@ -1311,7 +1467,7 @@ function qr() {
             document.getElementById("qr").appendChild(creatMatrix);    
             count++;
         } else {
-            console.log("bla");
+           
         }
 }
 
