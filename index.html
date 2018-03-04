@@ -36,6 +36,10 @@
                 <li class="line" onclick="yakob()"><a class="waves-effect waves-light btn" id="yakobClick">yakob</a></li>
               </ul>
             </div>
+            <!-- <div class="col s12 white z-depth-5" id="cont" >
+              <p>The number of Ithers: K =<span id="k"></span></p>
+              <p>The matrix's own numbers are <span id="lambda"></span></p>
+            </div> -->
           </div>
         </div>
         <div class="col s10">
@@ -147,14 +151,13 @@
               </div>
             </div>      
           </div>
-
           <div id="fadev">
             <div class="row">
               <div class="col s12">
                 <div  id="lpart3" class="container">
                   <h4 class="header">fadev</h4>
-                    <p class="size">Matrix dimension</p>
-                    <span id="fdimension"></span>
+                  <p class="size">Matrix dimension</p>
+                  <span id="fdimension"></span>
                   </div>
                 </div>
                 <div class="col s12">
@@ -166,21 +169,103 @@
                 </div>
               </div>              
           </div>
-          <div id="qr" class="container row">
-            <h4 class="header">QR Algorithm</h4>
-            <p class="size">Matrix dimension:</p>     
+          <div id="qr">
+            <div class="row">
+              <div class="col s12">
+                <div  id="qrpart3" class="container">
+                  <h4 class="header">QR Algorithm</h4>
+                  <div class="row">
+                    <div class="col s4">
+                      <p class="size">Matrix dimension</p>
+                      <span id="qrdimension1"></span>
+                    </div>
+                    <div class="col s4">
+                      <p class="size">Accuraey</p>
+                      <span id="qrdimension2">
+                        <img class="letters mletters" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Greek_lc_theta.svg/400px-Greek_lc_theta.svg.png" alt="tau">
+                      </span>
+                    </div>
+                    <div class="col s4">
+                      <span id="qrdimension3"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12">
+                <div  id="qrpart1" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div class="col s12" id="qrpart2"></div>
+                  <div  id="qrpart11" class="col s12 center container"></div>
+                </div>
+              </div>           
           </div>
-          <div id="lr" class="container">
-            <h4 class="header">lr</h4>
-            <p class="size">Matrix dimension:</p>         
+          <div id="lr">
+            <div class="row">
+              <div class="col s12">
+                <div  id="lrpart3" class="container">
+                  <h4 class="header">LR Algorithm</h4>
+                  <div class="row">
+                    <div class="col s4">
+                      <p class="size">Matrix dimension</p>
+                      <span id="lrdimension1"></span>
+                    </div>
+                    <div class="col s4">
+                      <p class="size">Accuraey</p>
+                      <span id="lrdimension2">
+                        <img class="letters mletters" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Greek_lc_theta.svg/400px-Greek_lc_theta.svg.png" alt="tau">
+                      </span>
+                    </div>
+                    <div class="col s4">
+                      <span id="lrdimension3"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12">
+                <div  id="lrpart1" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div class="col s12" id="qrpart2"></div>
+                  <div  id="lrpart11" class="col s12 center container"></div>
+                </div>
+              </div>         
           </div>
           <div id="yakob" class="container">
-            <h4 class="header">yakob</h4>
-            <p class="size">Matrix dimension:</p>         
+            <div class="row">
+              <div class="col s12">
+                <div  id="ypart3" class="container">
+                  <h4 class="header">yakob</h4>
+                  <div class="row">
+                    <div class="col s4">
+                      <p class="size">Matrix dimension</p>
+                      <span id="ydimension1"></span>
+                    </div>
+                    <div class="col s4">
+                      <p class="size">Accuraey</p>
+                      <span id="ydimension2">
+                        <img class="letters mletters" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Greek_lc_theta.svg/400px-Greek_lc_theta.svg.png" alt="tau">
+                      </span>
+                    </div>
+                    <div class="col s4">
+                      <span id="ydimension3"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12">
+                <div  id="ypart1" class="container"></div>
+              </div>
+              <div class="col s12">
+                <div class="col s12" id="ypart2"></div>
+                  <div  id="ypart11" class="col s12 center container"></div>
+                </div>
+              </div>
           </div>
         </div>  
-      </div>
+       
     </div>
+
   </div>  
   <footer class="page-footer deep-purple">
     <div class="footer-copyright">

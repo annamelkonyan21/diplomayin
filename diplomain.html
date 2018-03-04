@@ -489,21 +489,16 @@
                 }
             }
         }
-        document.write(max + " " + i0 + " "+ j0) ;
         let fi = 0.5*Math.atan((2*max)/(A[i0][i0]-A[j0][j0]));
-        console.log(fi);
-
+      
         let c = Math.cos(0.5*Math.atan((2*A[i0][j0])/(A[i0][i0]-A[j0][j0])));
         let s = Math.sin(0.5*Math.atan((2*A[i0][j0])/(A[i0][i0]-A[j0][j0])));
-        
-        document.write(linebreak+s+linebreak);
         let Am = newMatrix(matrixSize);
-        
         for(let i = 0; i < matrixSize; i++){
             Am[i0][i] = A[i][i0]*c + A[i][j0]*s;
             Am[j0][i] = -A[i][i0]*s + A[i][j0]*c;
             Am[i][i0] = Am[i0][i];
-        Am[i][j0] = Am[j0][i];
+            Am[i][j0] = Am[j0][i];
         }
         for(let i = 0; i < matrixSize; i++){
             for(let j = 0; j < matrixSize; j++){
@@ -513,12 +508,10 @@
             }
         }
         Am[i0][i0] = A[i0][i0]*Math.pow(c, 2)+2*A[i0][j0]*s*c+A[j0][j0]*Math.pow(s,2);
-        
         Am[j0][j0] = A[i0][i0]*Math.pow(s,2)-2*A[i0][j0]*s*c+A[j0][j0]*Math.pow(c,2);
         Am[i0][j0] = 0;
         Am[j0][i0] = 0;
-        console.log("Am[3][3] = "+ Am[i0][i0]);
-        print(Am, "Am");
+        
         return Am;
        
     }

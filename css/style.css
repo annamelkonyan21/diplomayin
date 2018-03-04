@@ -62,9 +62,16 @@ select:focus{
     outline-width: 0;
 }
 
-.lammbda {
+.letters {
+    margin-top: 15px;
     height: 18px;
     float: left;
+}
+.mletters{
+    margin-left: 80px;
+}
+#cont{ 
+    display: none;
 }
 
 /* #add{
