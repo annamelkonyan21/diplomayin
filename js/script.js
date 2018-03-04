@@ -19,10 +19,8 @@ function newMatrix2(n,m){
 }
 //---------- qr am -----------------
 
-function AM(a, matrixSize){
-            
+function AM(a, matrixSize){         
     let s = [], v = [] , myu = [];
-    
     for(let i = 0; i < matrixSize-1; i++) {
         let sum = 0;
         for(let j = i; j < matrixSize; j++) {
@@ -118,7 +116,7 @@ function AM(a, matrixSize){
         p0 = mul(p0,p[i]);
     }
     R = mul(p0,a);
-    let Q =fadeev(p0,matrixSize);
+    let Q =inverseMatrix(p0,matrixSize);
     let Am = mul(R,Q);
     
     return Am;
@@ -198,18 +196,31 @@ function mul(matrix,matrix2){
     return mat;
 }
 
+//-------------------sub-------------------
+
+function sub2(A,B,size){
+
+    let C = newMatrix(size);
+    for(let i = 0; i< size; i++){
+        for(let j=0; j<size; j++){
+            C[i][j] = A[i][j] - B[i][j];
+        }
+    }
+    return C;
+}
+
 //----------- fadev ----------------
 
-function fadeev(A,matrixSize){
+function inverseMatrix(A,matrixSize){
     let p = [];
     let p1 = hetq(A);
-        p.push(p1);
-    let A1 = A, B1 = newMatrix(matrixSize);    
+        p.push(p1); 
+    let A1 = A, B1 = newMatrix(matrixSize);      
     for(let k = 1; k < matrixSize; k++ ){
         let E = newMatrix(matrixSize);
         for(let i =0; i < matrixSize; i++){
             for(let j = 0; j<matrixSize; j++){
-                if (i ===j ){
+                if (i === j ){
                     E[i][j] = p[k-1];
                 } else {
                     E[i][j] = 0;
@@ -217,7 +228,7 @@ function fadeev(A,matrixSize){
             }
         }
         let B = newMatrix(matrixSize);
-        B = sub(A1,E);
+        B = sub2(A1,E,matrixSize);
         let C = mul(A,B);
         let p2 = hetq(C)/(k+1);
         p.push(p2);
@@ -226,13 +237,14 @@ function fadeev(A,matrixSize){
             B1 = B;
         }
     }
+
     let reverseA = newMatrix(matrixSize);
     for(let i=0; i<matrixSize; i++){
         for(let j=0; j<matrixSize; j++){
             reverseA[i][j] = B1[i][j]/p[p.length-1];
         }
     }
-  
+
     return reverseA;
 }
 
@@ -247,6 +259,7 @@ function hetq(matrix){
             }
         }
     }
+    //console.log(typeof hetq);
     return hetq;
 }
 
@@ -262,6 +275,32 @@ function sub(matrix,matrix2){
     return mat;
 }
 
+function leveryev(A,matrixSize){
+    let s =[], p=[], pi = 0;
+    s[0] = hetq(A);
+    p[0] = s[0];
+    let B = mul(A,A);
+    let qq = hetq(B);
+    s.push(qq);
+    for(let k = 2; k < matrixSize; k++){
+        let C = mul(A,B);
+        B = C;
+        let q = hetq(B);
+        s.push(q);
+    }
+    for(let i = 1; i<matrixSize;i++){
+        let sum = 0;
+        var k =0;
+        for(let j = i; j>0;j--){
+            if(k<i){
+                sum +=s[j-1]*p[k];
+                k++;
+            }
+        } 
+        p[i] = (s[i]-sum)/(i+1);
+    }
+    return p;
+}
 
 
 function displayAndBtn(activeDisplay, array1, array2, array3, array4, array5, array6,array7,array8, activeBtn, array11, array22, array33, array44, array55, array66, array77, array88) {
@@ -789,7 +828,6 @@ function mul2(){
                     for(let j = 0; j < size[2]; j++){
                         td3[i][j] = document.createElement('td');
                         td3[i][j].innerHTML = "C[" + (i+1) + "][" + (j+1) + "] = " + C[i][j];
-                        td3[i][j].classList = "center-align";
                         tr3[i].appendChild(td3[i][j])
                     }
                     table3.appendChild(tr3[i]);
@@ -839,6 +877,7 @@ function inverse(){
         div1.classList = "input-fluid col s4";
         let select1 = document.createElement('select');
         select1.id ="select_id1";
+        select1.style.marginLeft = '100px';
         let option1 = [];
         for(let i = 2; i <= 100; i++){
             option1[i] = document.createElement('option');
@@ -856,6 +895,7 @@ function inverse(){
         creatMatrix.setAttribute("type", "submit");
         creatMatrix.classList = "waves-effect waves-light btn";
         creatMatrix.addEventListener('click',getValue);
+        creatMatrix.style.marginRight = '100px';
         let size = [];
         let table1 = document.createElement("table");
         let header1 = document.createElement('h4');
@@ -884,6 +924,7 @@ function inverse(){
                     input1[i][j].setAttribute('type', 'number');
                     input1[i][j].setAttribute("id", inputValue1); 
                     input1[i][j].setAttribute("name", inputValue1);  
+                    A[i][j] = input1[i][j].value;
                     div2[i][j].appendChild(label1[i][j]);
                     div2[i][j].appendChild(input1[i][j]);
                     td1[i][j].appendChild(div2[i][j]);
@@ -898,12 +939,55 @@ function inverse(){
             done.setAttribute('type','button');
             done.classList = 'btn';
             done.addEventListener('click', calculate);
+            let donem = document.createElement('input');
+            donem.setAttribute('value', 'clear');
+            donem.setAttribute('type','button');
+            donem.classList = 'btn';
             function calculate(){
                 let B = newMatrix(size);
+                let tabel2 = document.createElement('tabel');
+                let tr2 = [];
                 let td2 = newMatrix(size);
-                
-            }
-             
+                for(let i=0; i < size; i++){
+                    for(let j = 0; j < size; j++){
+                        A[i][j] = input1[i][j].value;
+                        A[i][j] = parseFloat(A[i][j]);
+                    }
+                }
+                B = inverseMatrix(A,size);
+                  for(let i = 0; i < size; i++ ){
+                    tr2[i] = document.createElement('tr');
+                    for(let j =0; j < size; j++){    
+                        td2[i][j] = document.createElement('td');
+                        td2[i][j].innerHTML = "B["+(i+1)+"]["+(j+1)+"]="+B[i][j];
+                        tr2[i].appendChild(td2[i][j]);
+                    }
+                    tabel2.appendChild(tr2[i]);
+                }
+                let header2 = document.createElement('h4');
+                header2.innerHTML = 'Inverse Matrix';
+                header2.classList = 'center-align';
+                document.getElementById('ipart2').appendChild(header2);
+                document.getElementById('ipart11').appendChild(tabel2);
+               
+                donem.addEventListener('click', clear);
+                function clear(){
+                    for(let i = 0; i < size; i++){
+                        table1.removeChild(tr1[i]);
+                        tabel2.removeChild(tr2[i]);
+                    }  
+                    document.getElementById("ipart1").removeChild(done);
+                    document.getElementById("ipart1").removeChild(header1);
+                    document.getElementById("ipart2").removeChild(header2);
+                    document.getElementById("ipart1").removeChild(table1);        
+                    document.getElementById("ipart11").removeChild(tabel2);        
+                    document.getElementById("ipart1").removeChild(donem);
+                }
+              
+            }   
+            document.getElementById('ipart1').appendChild(done);
+            document.getElementById("ipart1").appendChild(donem);
+                        
         }
 
         document.getElementById('dimension').appendChild(creatMatrix);
@@ -914,7 +998,129 @@ function inverse(){
 let levereyCount = true;
 function leverey(){
     displayAndBtn("leverey", "sub", "add", "mul", "inverse", "fadev", "qr", "lr", "yakob","inverseClick", "subClick", "addClick", "mulClick", "inverseClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
-    
+    if (levereyCount) { 
+        let divs = document.createElement('div');
+        divs.classList = "col s3 offset-s4";
+        let div1 = document.createElement('div');
+        div1.classList = "input-fluid col s4";
+        let select1 = document.createElement('select');
+        select1.id ="select_id1";
+        select1.style.marginLeft = '100px';
+        let option1 = [];
+        for(let i = 2; i <= 100; i++){
+            option1[i] = document.createElement('option');
+            option1[i].setAttribute("value", i);
+            option1[i].innerHTML = i;
+        }        
+        for(let i = 2; i <= 100; i++){
+            select1.appendChild(option1[i]);
+        }
+        div1.appendChild(select1);
+        divs.appendChild(div1);
+        document.getElementById("ldimension").appendChild(divs);  
+        let creatMatrix = document.createElement('input');
+        creatMatrix.setAttribute("value","Set Matrix");
+        creatMatrix.setAttribute("type", "submit");
+        creatMatrix.classList = "btn waves-effect waves-light";
+        creatMatrix.addEventListener('click',getValue);
+        creatMatrix.style.marginRight = '100px';
+        let size = [];
+        let table1 = document.createElement("table");
+        let header1 = document.createElement('h4');
+        let tr1 = [];
+        function getValue(){
+            header1.innerHTML = "A matrix";
+            header1.classList = 'center-align';
+            size = select1.value;
+            size = parseInt(size);
+            let A = newMatrix(size);
+            let td1 = newMatrix(size);
+            let input1 = newMatrix(size);
+            let label1 = newMatrix(size);
+            let div2 = newMatrix(size);
+            for(let i = 0; i < size; i++){
+                tr1[i] = document.createElement('tr');
+                for(let j = 0; j < size; j++){
+                    td1[i][j] = document.createElement('td');
+                    div2[i][j] = document.createElement('div');
+                    label1[i][j] = document.createElement('label');
+                    let inputValue1 = "A["+(i+1)+"]["+(j+1)+"]";
+                    div2[i][j].classList = "input-field";
+                    input1[i][j] = document.createElement('input');
+                    label1[i][j].id = inputValue1;
+                    label1[i][j].innerHTML =  inputValue1;
+                    input1[i][j].setAttribute('type', 'number');
+                    input1[i][j].setAttribute("id", inputValue1); 
+                    input1[i][j].setAttribute("name", inputValue1);  
+                    A[i][j] = input1[i][j].value;
+                    div2[i][j].appendChild(label1[i][j]);
+                    div2[i][j].appendChild(input1[i][j]);
+                    td1[i][j].appendChild(div2[i][j]);
+                    tr1[i].appendChild(td1[i][j]);
+                }
+                table1.appendChild(tr1[i]);
+            }
+            document.getElementById('lpart1').appendChild(header1);  
+            document.getElementById('lpart1').appendChild(table1);
+            let done = document.createElement('input');
+            done.setAttribute('value', 'calculate');
+            done.setAttribute('type','button');
+            done.classList = 'btn';
+            done.addEventListener('click', calculate);
+            let donem = document.createElement('input');
+            donem.setAttribute('value', 'clear');
+            donem.setAttribute('type','button');
+            donem.classList = 'btn';
+            function calculate(){
+                let B = newMatrix(size);
+                let tabel2 = document.createElement('tabel');
+                let tr2 = [];
+                let td2 = newMatrix(size);
+                for(let i=0; i < size; i++){
+                    for(let j = 0; j < size; j++){
+                        A[i][j] = input1[i][j].value;
+                        A[i][j] = parseFloat(A[i][j]);
+                    }
+                }
+                B = leveryev(A,size);
+                  for(let i = 0; i < size; i++ ){
+                    tr2[i] = document.createElement('tr');
+                    for(let j =0; j < size; j++){    
+                        td2[i][j] = document.createElement('td');
+                        td2[i][j].innerHTML = "B["+(i+1)+"]["+(j+1)+"]="+B[i][j];
+                        tr2[i].appendChild(td2[i][j]);
+                    }
+                    tabel2.appendChild(tr2[i]);
+                }
+                let header2 = document.createElement('h4');
+                header2.innerHTML = 'P -?';
+                header2.classList = 'center-align';
+                document.getElementById('lpart2').appendChild(header2);
+                document.getElementById('lpart11').appendChild(tabel2);
+               
+                donem.addEventListener('click', clear);
+                function clear(){
+                    for(let i = 0; i < size; i++){
+                        table1.removeChild(tr1[i]);
+                        tabel2.removeChild(tr2[i]);
+                    }  
+                    document.getElementById("lpart1").removeChild(done);
+                    document.getElementById("lpart1").removeChild(header1);
+                    document.getElementById("lpart2").removeChild(header2);
+                    document.getElementById("lpart1").removeChild(table1);        
+                    document.getElementById("lpart11").removeChild(tabel2);        
+                    document.getElementById("lpart1").removeChild(donem);
+                }
+              
+            }   
+            document.getElementById('lpart1').appendChild(done);
+            document.getElementById("lpart1").appendChild(donem);
+                        
+        }
+
+        document.getElementById('ldimension').appendChild(creatMatrix);
+        levereyCount = false;
+    } 
 }
 
 let fadevCount = true;

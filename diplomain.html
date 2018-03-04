@@ -154,14 +154,15 @@
 
         //leveryev();
         
-        function fadeev(A,matrixSize){
-            //let matrixSize =  prompt("matrix size",);
-              //  matrixSize = parseInt(matrixSize);
-           //     document.write("A"+ linebreak);
-            //let A =  promptMatrix(matrixSize), 
+        function fadeev(){
+            let matrixSize =  prompt("matrix size",);
+              matrixSize = parseInt(matrixSize);
+               document.write("A"+ linebreak);
+           let A =  promptMatrix(matrixSize);
             let p = [];
             let p1 = hetq(A);
                 p.push(p1);
+                console.log('p1 ' + p1 );
             let A1 = A, B1 = newMatrix(matrixSize);    
             for(let k = 1; k < matrixSize; k++ ){
                 let E = newMatrix(matrixSize);
@@ -174,31 +175,44 @@
                         }
                     }
                 }
+                console.log(A1);
                 let B = newMatrix(matrixSize);
                 B = sub(A1,E);
-              //  print(B,"B"+k);
+              //  print(B,"B"+k)
+                console.log(B);
                 let C = mul(A,B);
+                console.log(C);
              //   print(C,"A"+(k+1) +"= A*B");
+             
                 let p2 = hetq(C)/(k+1);
+                console.log('p1 ' + p2 );
                 p.push(p2);
                 A1 = C;
                 if(k ===  (matrixSize-1)){
                     B1 = B;
                 }
+                
             }
 
             let reverseA = newMatrix(matrixSize);
             for(let i=0; i<matrixSize; i++){
                     for(let j=0; j<matrixSize; j++){
                         reverseA[i][j] = B1[i][j]/p[p.length-1];
+                        
                     }
             }
           //  print(reverseA,"Reverse A");
           //  arrayPrint(p,"p");
-            return reverseA;
+           // return reverseA;
+           for(let i=0; i<matrixSize; i++){
+                    for(let j=0; j<matrixSize; j++){
+                        console.log(reverseA[i][j]);
+                        
+                    }
+            }
         }
 
-        //fadeev();
+        fadeev();
 
         //QR
 
@@ -537,7 +551,7 @@
 
 
 
-   yakob();
+  // yakob();
     </script>
 </body>
 </html>
