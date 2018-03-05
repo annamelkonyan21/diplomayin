@@ -449,6 +449,7 @@ let addCount = true;
 function add1(){
     displayAndBtn("add", "sub", "mul", "inverse", "leverey", "fadev", "qr", "lr", "yakob", "addClick", "subClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if(addCount){
+        location.href = "index.html#addition";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s5";
         let div1 = document.createElement('div');
@@ -615,6 +616,7 @@ let subCount = true;
 function sub1(){
     displayAndBtn("sub", "add", "mul", "inverse", "leverey", "fadev", "qr", "lr", "yakob","subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if(subCount){
+        location.href = "index.html#sub";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s5";
         let div1 = document.createElement('div');
@@ -779,6 +781,7 @@ let mulCount = true;
 function mul2(){
     displayAndBtn("mul", "sub", "add", "inverse", "leverey", "fadev", "qr", "lr", "yakob","mulClick", "subClick", "addClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if(mulCount){
+        location.href = "index.html#mul";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -990,6 +993,7 @@ let inverseCount = true;
 function inverse(){
     displayAndBtn("inverse", "sub", "add", "mul", "leverey", "fadev", "qr", "lr", "yakob","inverseClick", "subClick", "addClick", "mulClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if (inverseCount) { 
+        location.href = "index.html#inverse";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -1118,6 +1122,7 @@ let levereyCount = true;
 function leverey(){
     displayAndBtn("leverey", "sub", "add", "mul", "inverse", "fadev", "qr", "lr", "yakob","inverseClick", "subClick", "addClick", "mulClick", "inverseClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if (levereyCount) { 
+        location.href = "index.html#leverey";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -1250,6 +1255,7 @@ let fadevCount = true;
 function fadev(){
     displayAndBtn("fadev", "sub", "add", "mul", "inverse", "leverey", "qr", "lr", "yakob","fadevClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "qrClick", "lrClick", "yakobClick");
     if (fadevCount) { 
+        location.href = "index.html#fadevCount";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -1379,6 +1385,7 @@ let qrCount = true;
 function qr() {
     displayAndBtn("qr", "sub", "add", "mul", "inverse", "leverey", "fadev", "lr", "yakob","qrClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "lrClick", "yakobClick");
     if(qrCount) { 
+        location.href = "index.html#qr"; 
         let div1 = document.createElement('div');
         div1.classList = "input-fluid col s2";
         let select = document.createElement('select');
@@ -1547,6 +1554,7 @@ let lrCount = true;
 function lr() {
     displayAndBtn("lr", "sub", "add", "mul", "inverse", "leverey", "fadev", "qr", "yakob","lrClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "yakobClick");
     if(lrCount) { 
+        location.href = "index.html#lr";
         let div1 = document.createElement('div');
         div1.classList = "input-fluid col s2";
         let select = document.createElement('select');
@@ -1715,6 +1723,8 @@ let yakobCount = true;
 function yakob() {
     displayAndBtn("yakob", "sub", "add", "mul", "inverse", "leverey", "fadev", "lr", "qr","yakobClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "lrClick", "qrClick");
     if(yakobCount) { 
+        window.location.pathname = ' https://annamelkonyan21.github.io/diplomayin/yakop';
+        //location.href = "index.html#yakob";
         let div1 = document.createElement('div');
         div1.classList = "input-fluid col s2";
         let select = document.createElement('select');
@@ -1725,13 +1735,13 @@ function yakob() {
             option[i].setAttribute("value", i);
             option[i].innerHTML = i;
         }
-        div1.classList = "input-fluid col s3 offset-s4";     
+        div1.classList = "input-fluid col s4 offset-s4";     
         let input11 = document.createElement('input');
         input11.setAttribute('type','number');
-        input11.setAttribute('min','0');
+        input11.style.backgroundColor = 'white';
         let div12 = document.createElement('div');
         div12.appendChild(input11);
-        div12.classList = "input-fluid col s3";
+        div12.classList = "input-fluid col s4";
         let creatMatrix = document.createElement('input');
         creatMatrix.setAttribute("value","Set Matrix");
         creatMatrix.setAttribute("type", "submit");
@@ -1780,8 +1790,7 @@ function yakob() {
                 }   
             }
             done.addEventListener('click', done1);
-            function done1() {  
-                //document.getElementById('cont').style.display = 'block';    
+            function done1() {     
                 for(let i = 0; i < size; i++){
                     for(let j = 0; j < size; j++){
                      A[i][j] =  parseFloat(input1[i][j].value);
@@ -1808,7 +1817,6 @@ function yakob() {
                     }
                     
                 }
-               console.log(aa);
                 let td2 = newMatrix(size);
                 
                 for(let i = 0; i < size; i++){
@@ -1840,9 +1848,9 @@ function yakob() {
                 }
                
                 header2.innerHTML = "The number of Ithers: K = " + iteraci + linebreak;
-                document.getElementById('ypart1').appendChild(header2);  
-                document.getElementById('ypart1').appendChild(header1);  
-                document.getElementById('ypart1').appendChild(div3);               
+                document.getElementById('ypart11').appendChild(header2);  
+                document.getElementById('ypart11').appendChild(header1);  
+                document.getElementById('ypart11').appendChild(div3);               
             }        
             for(let i = 0; i < size; i++){
                 for(let j = 0; j < size; j++){
@@ -1859,7 +1867,7 @@ function yakob() {
             clearElement.setAttribute("type", "submit");
             clearElement.classList = "waves-effect waves-light btn";
             clearElement.addEventListener('click', clearValue);
-            document.getElementById("ypart1").appendChild(done);
+            document.getElementById("ypart11").appendChild(done);
             function clearValue() {
                 for(let i = 0; i < size; i++){
                     table1.removeChild(tr1[i]);
@@ -1871,10 +1879,10 @@ function yakob() {
                 document.getElementById('ypart1').removeChild(header1);  
                 document.getElementById('ypart1').removeChild(div3);        
                 document.getElementById("ypart1").removeChild(done);
-                document.getElementById("ypart11").removeChild(table1);   
+                document.getElementById("ypart1 1").removeChild(table1);   
                 document.getElementById("ypart1").removeChild(clearElement);    
             }
-            document.getElementById("ypart1").appendChild(clearElement);
+            document.getElementById("ypart11").appendChild(clearElement);
         }
      
         for(let i = 2; i <= 100; i++){
