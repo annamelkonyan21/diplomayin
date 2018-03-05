@@ -448,8 +448,9 @@ function displayAndBtn(activeDisplay, array1, array2, array3, array4, array5, ar
 let addCount = true;
 function add1(){
     displayAndBtn("add", "sub", "mul", "inverse", "leverey", "fadev", "qr", "lr", "yakob", "addClick", "subClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
+    location.href = "#addition";
     if(addCount){
-        location.href = "index.html#addition";
+       
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s5";
         let div1 = document.createElement('div');
@@ -614,9 +615,9 @@ function add1(){
 
 let subCount = true;
 function sub1(){
+    location.href = "#subtraction";
     displayAndBtn("sub", "add", "mul", "inverse", "leverey", "fadev", "qr", "lr", "yakob","subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if(subCount){
-        location.href = "index.html#sub";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s5";
         let div1 = document.createElement('div');
@@ -780,8 +781,9 @@ function sub1(){
 let mulCount = true;
 function mul2(){
     displayAndBtn("mul", "sub", "add", "inverse", "leverey", "fadev", "qr", "lr", "yakob","mulClick", "subClick", "addClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
+    location.href = "#$multiplication";
     if(mulCount){
-        location.href = "index.html#mul";
+        
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -993,7 +995,7 @@ let inverseCount = true;
 function inverse(){
     displayAndBtn("inverse", "sub", "add", "mul", "leverey", "fadev", "qr", "lr", "yakob","inverseClick", "subClick", "addClick", "mulClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
     if (inverseCount) { 
-        location.href = "index.html#inverse";
+        location.href = "#inverse";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -1121,8 +1123,8 @@ function inverse(){
 let levereyCount = true;
 function leverey(){
     displayAndBtn("leverey", "sub", "add", "mul", "inverse", "fadev", "qr", "lr", "yakob","inverseClick", "subClick", "addClick", "mulClick", "inverseClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
+    location.href = "#leverrier";
     if (levereyCount) { 
-        location.href = "index.html#leverey";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -1253,9 +1255,9 @@ function leverey(){
 
 let fadevCount = true;
 function fadev(){
+    location.href = "#faddeev ";
     displayAndBtn("fadev", "sub", "add", "mul", "inverse", "leverey", "qr", "lr", "yakob","fadevClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "qrClick", "lrClick", "yakobClick");
     if (fadevCount) { 
-        location.href = "index.html#fadevCount";
         let divs = document.createElement('div');
         divs.classList = "col s3 offset-s4";
         let div1 = document.createElement('div');
@@ -1382,10 +1384,10 @@ function fadev(){
 
 
 let qrCount = true;
-function qr() {
+function qr() {   
     displayAndBtn("qr", "sub", "add", "mul", "inverse", "leverey", "fadev", "lr", "yakob","qrClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "lrClick", "yakobClick");
-    if(qrCount) { 
-        location.href = "index.html#qr"; 
+    location.href = "#qr"; 
+    if(qrCount) {
         let div1 = document.createElement('div');
         div1.classList = "input-fluid col s2";
         let select = document.createElement('select');
@@ -1552,9 +1554,9 @@ function qr() {
 
 let lrCount = true;
 function lr() {
+    location.href = "#lr";
     displayAndBtn("lr", "sub", "add", "mul", "inverse", "leverey", "fadev", "qr", "yakob","lrClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "yakobClick");
     if(lrCount) { 
-        location.href = "index.html#lr";
         let div1 = document.createElement('div');
         div1.classList = "input-fluid col s2";
         let select = document.createElement('select');
@@ -1722,9 +1724,8 @@ function lr() {
 let yakobCount = true;
 function yakob() {
     displayAndBtn("yakob", "sub", "add", "mul", "inverse", "leverey", "fadev", "lr", "qr","yakobClick", "subClick", "addClick", "mulClick", "inverseClick", "levereyClick", "fadevClick", "lrClick", "qrClick");
+    location.href = '#jakop';
     if(yakobCount) { 
-        window.location.pathname = ' https://annamelkonyan21.github.io/diplomayin/yakop';
-        //location.href = "index.html#yakob";
         let div1 = document.createElement('div');
         div1.classList = "input-fluid col s2";
         let select = document.createElement('select');
