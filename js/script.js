@@ -781,7 +781,7 @@ function sub1(){
 let mulCount = true;
 function mul2(){
     displayAndBtn("mul", "sub", "add", "inverse", "leverey", "fadev", "qr", "lr", "yakob","mulClick", "subClick", "addClick", "inverseClick", "levereyClick", "fadevClick", "qrClick", "lrClick", "yakobClick");
-    location.href = "#$multiplication";
+    location.href = "#multiplication";
     if(mulCount){
         
         let divs = document.createElement('div');
