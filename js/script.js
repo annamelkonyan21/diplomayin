@@ -1490,12 +1490,12 @@ function qr() {
                     }
                     table2.appendChild(tr2[i]);
                 }    
-                document.getElementById('qr').appendChild(table2);                 
+               // document.getElementById('qr').appendChild(table2);                 
                 let l = lambda(A1,size);               
-                header1.innerHTML = "The matrix's own numbers are :" + linebreak;
+                header1.innerHTML = "Eigenvalues of matrix :" + linebreak;
                 for(let i = 0; i < size; i++){
                     lammbda[i] = document.createElement('img');
-                    lammbda[i].setAttribute("src", "https://cdn.pixabay.com/photo/2013/03/30/00/09/lambda-97846_960_720.png");
+                    lammbda[i].setAttribute("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Lambda_lc.svg/2000px-Lambda_lc.svg.png");
                     lammbda[i].classList = "letters";
                     lammbda[i].style.marginTop = '0px';
                     text[i] = document.createElement('p');
@@ -1530,7 +1530,7 @@ function qr() {
                     table1.removeChild(tr1[i]);
                     div3.removeChild(lammbda[i]);
                     div3.removeChild(text[i]);
-                    table2.removeChild(tr2[i]);
+                  //  table2.removeChild(tr2[i]);
                 }
                 document.getElementById('qrpart1').removeChild(header2);  
                 document.getElementById('qrpart1').removeChild(header1);  
@@ -1571,6 +1571,7 @@ function lr() {
         let input11 = document.createElement('input');
         input11.setAttribute('type','number');
         input11.setAttribute('min','0');
+        input11.setAttribute('step','0.001');
         let div12 = document.createElement('div');
         div12.appendChild(input11);
         div12.classList = "input-fluid col s3";
@@ -1657,14 +1658,14 @@ function lr() {
                         td2[i][j].innerHTML = a + " = " + A1[i][j].toFixed(3);
                         tr2[i].appendChild(td2[i][j]);
                     }
-                    table2.appendChild(tr2[i]);
+                  // table2.appendChild(tr2[i]);
                 }    
-                document.getElementById('lr').appendChild(table2);                               
+               // document.getElementById('lr').appendChild(table2);                               
                 let l = lambda(A1,size);              
-                header1.innerHTML = "The matrix's own numbers are :" + linebreak;
+                header1.innerHTML = "Eigenvalues of matrix :" + linebreak;
                 for(let i = 0; i < size; i++){
                     lammbda[i] = document.createElement('img');
-                    lammbda[i].setAttribute("src", "https://cdn.pixabay.com/photo/2013/03/30/00/09/lambda-97846_960_720.png");
+                    lammbda[i].setAttribute("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Lambda_lc.svg/2000px-Lambda_lc.svg.png");
                     lammbda[i].classList = "letters";
                     lammbda[i].style.marginTop = '0px';
                     text[i] = document.createElement('p');
@@ -1698,7 +1699,7 @@ function lr() {
                     table1.removeChild(tr1[i]);
                     div3.removeChild(lammbda[i]);
                     div3.removeChild(text[i]);
-                    table2.removeChild(tr2[i]);
+                 //   table2.removeChild(tr2[i]);
                 }
                 document.getElementById('lrpart1').removeChild(header2);  
                 document.getElementById('lrpart1').removeChild(header1);  
@@ -1739,7 +1740,6 @@ function yakob() {
         div1.classList = "input-fluid col s4 offset-s4";     
         let input11 = document.createElement('input');
         input11.setAttribute('type','number');
-        input11.style.backgroundColor = 'white';
         let div12 = document.createElement('div');
         div12.appendChild(input11);
         div12.classList = "input-fluid col s4";
@@ -1803,11 +1803,14 @@ function yakob() {
                 let aa = newMatrix(size);
                 while(t) {
                     let AM = yakobAm(A, size);
+                    console.log(AM);
                     for(let i = 0 ; i < size; i++) {
                         for(let j = 0 ; j < size; j++){
                             if(i < j || i > j) {
                                 AM[i][j] < 0;
                                 iteraci++;
+                                console.log(AM);
+                                console.log(iteraci);
                                 t = true;    
                             } else {
                                 aa[i][j] = AM[i][j];
@@ -1816,7 +1819,7 @@ function yakob() {
                             
                         }
                     }
-                    
+                   
                 }
                 let td2 = newMatrix(size);
                 
@@ -1826,20 +1829,20 @@ function yakob() {
                         td2[i][j] = document.createElement('td');
                         let a =  "A["+(i+1)+"]["+(j+1)+"]";
                         td2[i][j].classList = "text-deep-purple";
-                        td2[i][j].innerHTML = a + " = " + aa[i][j].toFixed(3);
+                    //    td2[i][j].innerHTML = a + " = " + aa[i][j].toFixed(3);
                         tr2[i].appendChild(td2[i][j]);
                     }
                     table2.appendChild(tr2[i]);
                 }    
-                document.getElementById('ypart2').appendChild(table2);  
+              //  document.getElementById('ypart2').appendChild(table2);  
                 
                 
                 let l = lambda(A1,size);
                
-                header1.innerHTML = "The matrix's own numbers are :" + linebreak;
+                header1.innerHTML = "Eigenvalues of matrix :" + linebreak;
                 for(let i = 0; i < size; i++){
                     lammbda[i] = document.createElement('img');
-                    lammbda[i].setAttribute("src", "https://cdn.pixabay.com/photo/2013/03/30/00/09/lambda-97846_960_720.png");
+                    lammbda[i].setAttribute("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Lambda_lc.svg/2000px-Lambda_lc.svg.png");
                     lammbda[i].classList = "letters";
                     lammbda[i].style.marginTop = '0px';
                     text[i] = document.createElement('p');

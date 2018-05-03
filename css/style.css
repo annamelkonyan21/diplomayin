@@ -35,7 +35,7 @@ input[type = number]:not(.browser-default):focus:not([readonly]) +label{
 }
 
 .btn{
-    border: 1px solid white !important;
+    border: 1px solid #d1c4e9 !important;
     border-radius: 0;
     background-color: #673ab7 !important;
 }
@@ -72,6 +72,14 @@ select:focus{
 }
 #cont{ 
     display: none;
+}
+.navigation {
+    height: 83vh;
+}
+
+.logo {
+    width: 90px;
+    height: 65px;
 }
 
 /* #add{

@@ -212,7 +212,7 @@
             }
         }
 
-        fadeev();
+      //  fadeev();
 
         //QR
 
@@ -330,17 +330,17 @@
         }
 
         function condition(a,matrixSize){
-            let tt = [] , t = true;          
+            let condition = [] , t = true;          
             for(let i = 1; i < matrixSize; i++) {
                 for(let j = 0; j < i; j++) {
                     if( Math.abs(a[i][j]) < 0.001) {
-                        tt.push(true);
+                        condition.push(true);
                     } else {
-                        tt.push(false);
+                        condition.push(false);
                     }
                 }
             }
-            return tt;
+            return condition;
         }
 
 
@@ -511,7 +511,7 @@
         Am[j0][j0] = A[i0][i0]*Math.pow(s,2)-2*A[i0][j0]*s*c+A[j0][j0]*Math.pow(c,2);
         Am[i0][j0] = 0;
         Am[j0][i0] = 0;
-        x
+        console.log(Am)
         return Am;
        
     }
@@ -535,16 +535,18 @@
                 
             }
         }
+  
         
     }
     
-
+    console.log(t);
+    
 
    }
 
 
 
-  // yakob();
+   yakob();
     </script>
 </body>
 </html>
