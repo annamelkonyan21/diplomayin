@@ -66,6 +66,7 @@ select:focus{
     margin-top: 15px;
     height: 18px;
     float: left;
+    width: 10px;
 }
 .mletters{
     margin-left: 80px;
@@ -80,6 +81,16 @@ select:focus{
 .logo {
     width: 90px;
     height: 65px;
+}
+.equal {
+    float: left;
+    margin-top: 14px;
+    margin-right: 3px;
+    margin-left: 2px;
+}
+
+.accuracy {
+    height: 2.4rem !important;
 }
 
 /* #add{

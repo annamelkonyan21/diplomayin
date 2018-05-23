@@ -1402,6 +1402,7 @@ function qr() {
         let input11 = document.createElement('input');
         input11.setAttribute('type','number');
         input11.setAttribute('min','0');
+        input11.classList = 'accuracy';
         let div12 = document.createElement('div');
         div12.appendChild(input11);
         div12.classList = "input-fluid col s3";
@@ -1462,12 +1463,14 @@ function qr() {
                 }
                 A1 = AM(A,size);
                 let bool = condition(A1,size,tauNumber);            
-                let iteraci = 0;
+                let iteraci = -1;
                 let t = true;
                 while(t){
                     for(let i  = 0; i < bool.length; i++){
                         if(bool[i] == false){
+                            console.log(iteraci);
                             iteraci++;        
+                            console.log(A1);
                             A1 = AM(A1,size);
                             bool = condition(A1,size,tauNumber);
                             t = true;     
@@ -1572,6 +1575,7 @@ function lr() {
         input11.setAttribute('type','number');
         input11.setAttribute('min','0');
         input11.setAttribute('step','0.001');
+        input11.classList = 'accuracy';
         let div12 = document.createElement('div');
         div12.appendChild(input11);
         div12.classList = "input-fluid col s3";
@@ -1580,8 +1584,10 @@ function lr() {
         creatMatrix.setAttribute("type", "submit");
         creatMatrix.classList = "waves-effect waves-light btn";
         creatMatrix.style.marginTop = "20px";
+        
         creatMatrix.addEventListener('click',getValue);
         function getValue(){
+            console.log(parseFloat(input11.value));
             let tr1 = [];
             let size = select.value;
             let tauNumber = parseFloat(input11.value);
@@ -1740,6 +1746,7 @@ function yakob() {
         div1.classList = "input-fluid col s4 offset-s4";     
         let input11 = document.createElement('input');
         input11.setAttribute('type','number');
+        input11.classList = 'accuracy';
         let div12 = document.createElement('div');
         div12.appendChild(input11);
         div12.classList = "input-fluid col s4";
